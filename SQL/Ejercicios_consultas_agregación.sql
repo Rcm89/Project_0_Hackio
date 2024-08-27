@@ -74,5 +74,5 @@ from "Track"
 
 -- Ejercicio 17: Concatenar el nombre y el apellido de los clientes.
 
-select CONCAT("FirstName", ' ', "LastName") as "nombre_y_apellidos" 
+select CONCAT("FirstName", ' ', "LastName") as "nombre_apellidos" 
 from "Customer";
