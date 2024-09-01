@@ -65,18 +65,40 @@ on c."CustomerID" = i."CustomerId"
 order by c."CustomerID", "fecha_factura"
 
 -- Ejercico 10: Encuentra todos los álbumes y, si existen, muestra los nombres de los artistas que los crearon. Incluye también los álbumes que no tienen un artista asignado (aunque en este caso en la base de datos de Chinook, todos los álbumes tienen un artista asignado).
-
+select al."Title" as Titulo_del_album, ar."Name" as mombre_del_artista
+from "Album" as al
+left join "Artist" as ar
+on ar."ArtistId" = al."ArtistId"
 
 -- Ejercicio 11: Cuenta cuántas pistas hay en cada género. Ordena los generos en función del número de canciones de mayor a menor. 
-
+select g."Name" as genero_de_la_pista, COUNT(t."Name") as numero_de_pistas
+from "Genre" as g
+inner join "Track" as t   
+on g."GenreId" = t."GenreId"
+group by g."Name"
+order by COUNT(t."Name") desc
 
 --  Ejercicio 12: Muestra los títulos de los álbumes y la duración total de todas las pistas en cada álbum.
-
+select al."Title" as titulo_del_album, SUM(t."Milliseconds") as duracion_del_album
+from "Album" as al
+inner join "Track" as t   
+on al."AlbumId" = t."AlbumId"
+group by al."Title"
+order by duracion_del_album
 
 -- Ejercicio 14: Encuentra los nombres de los clientes y el total gastado por cada uno.
-
+select CONCAT(c."FirstName", ' ', c."LastName") as "nombre_cliente"  , SUM(i."Total") as "gasto_total"
+from "Customer" as c 
+inner join "Invoice" as i
+on c."CustomerID" = i."CustomerId"
+group by CONCAT(c."FirstName", ' ', c."LastName")
+order by SUM(i."Total") desc
 
 -- Ejercicio 15: Encuentra todos los empleados y, si existen, muestra los nombres de los clientes que tienen asignados. Incluye también los empleados que no tienen clientes asignados.
-
+select CONCAT(e."FirstName", ' ' ,e."LastName") AS nombres_empleados, 
+       CONCAT(c."FirstName", ' ', c."LastName") AS nombres_clientes  
+from "Customer" as c 
+left join "Employee" as e 
+on c."SupportRepId" = e."EmployeeId"
 
 
