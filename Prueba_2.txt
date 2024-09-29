@@ -1,1 +1,3 @@
-Esto es una prueba de cabios en mi repo desde otro ordenador
+Esto es una prueba de cambios en mi repo desde otro ordenador.
+
+Posteriormente lo subo otra vez con algún cambio
